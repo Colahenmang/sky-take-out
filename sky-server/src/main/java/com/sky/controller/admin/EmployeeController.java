@@ -99,4 +99,19 @@ public class EmployeeController {
         PageResult pageResult = employeeService.page(employeePageQueryDTO);
         return Result.success(pageResult);
     }
+
+
+    /**
+     * 员工启用禁用账号
+     * @param status
+     * @param id
+     * @return
+     */
+    //status为路径参数，所有使用@PathVariable注解进行转化
+    @PostMapping("/status/{status}")
+    public Result startStop(@PathVariable Integer status,Long id) {
+        log.info("启用禁用员工账号：{}，{}",status,id);
+        employeeService.startStop(status,id);
+        return Result.success();
+    }
 }
